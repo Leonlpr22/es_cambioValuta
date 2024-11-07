@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertitore di Valuta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        select, input[type="text"], button {
+            padding: 8px;
+            width: 200px;
+        }
+        img {
+            width: 50px;
+            height: 30px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Convertitore di Valuta</h1>
+
+    <form action="cambio.php" method="get">
+        <label for="importo">Importo in Euro:</label>
+        <input type="text" id="importo" name="importo" required>
+
+        <label for="valuta">Scegli la valuta di arrivo:</label>
+        <select id="valuta" name="valuta" onchange="aggiornaBandiera()">
+            <option value="dollaro">Dollaro (USD)</option>
+            <option value="yen">Yen (JPY)</option>
+            <option value="franco">Franco Svizzero (CHF)</option>
+            <option value="sterlina">Sterlina (GBP)</option>
+        </select>
+
+        <img id="bandiera" src="https://www.worldometers.info/img/flags/us-flag.gif" alt="Bandiera">
+
+        <button type="submit">Converti</button>
+    </form>
+
+    <script>
+        function aggiornaBandiera() {
+            const valuta = document.getElementById("valuta").value;
+            const bandiera = document.getElementById("bandiera");
+
+            const bandiere = {
+                "dollaro": "https://www.worldometers.info/img/flags/us-flag.gif",
+                "yen": "https://www.worldometers.info/img/flags/ja-flag.gif",
+                "franco": "https://www.worldometers.info/img/flags/sz-flag.gif",
+                "sterlina": "https://www.worldometers.info/img/flags/uk-flag.gif"
+            };
+
+            bandiera.src = bandiere[valuta];
+        }
+    </script>
+
+</body>
+</html>
